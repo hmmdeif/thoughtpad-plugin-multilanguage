@@ -16,7 +16,7 @@ describe("multilanguage plugin", function () {
             yield thoughtpad.notify("html-precompile-all-request");
             thoughtpad.config.startFolder.should.eql('/en/');
             done();
-        })();
+        }).catch(done);
     });
 
     it("should change the start location for compiling pages even if language is missing", function (done) {
@@ -27,7 +27,7 @@ describe("multilanguage plugin", function () {
             yield thoughtpad.notify("html-precompile-all-request");
             thoughtpad.config.startFolder.should.eql('/en/');
             done();
-        })();
+        }).catch(done);
     });
 
     it("should not do anything if there are no additional languages", function (done) {
@@ -43,7 +43,7 @@ describe("multilanguage plugin", function () {
             yield thoughtpad.notify("html-postcompile-all-request");
             res.should.be.false;
             done();
-        })();
+        }).catch(done);
     });
 
     it("should call compile command for each additional language", function (done) {
@@ -60,7 +60,7 @@ describe("multilanguage plugin", function () {
             res.should.equal(2);
             thoughtpad.unsubscribe('html-compile-all-request');
             done();
-        })();
+        }).catch(done);
     });
 
     it("should change the url of the page correctly", function (done) {
@@ -71,7 +71,7 @@ describe("multilanguage plugin", function () {
             yield thoughtpad.notify("html-postcompile-all-request");
             thoughtpad.config.pages.home.url.should.eql('home-es.html');
             done();
-        })();
+        }).catch(done);
     });
 
     it("should reset the full url", function (done) {
@@ -82,7 +82,7 @@ describe("multilanguage plugin", function () {
             yield thoughtpad.notify("html-postcompile-all-request");
             (null === thoughtpad.config.pages.home.fullUrl).should.be.true;
             done();
-        })();
+        }).catch(done);
     });
 
     it("should change the start location for additional languages", function (done) {
@@ -93,7 +93,7 @@ describe("multilanguage plugin", function () {
             yield thoughtpad.notify("html-postcompile-all-request");
             thoughtpad.config.startFolder.should.eql('/es/');
             done();
-        })();
+        }).catch(done);
     });
     
 });
